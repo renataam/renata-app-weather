@@ -12,16 +12,27 @@
 </head>
 <body>
    <div class="container">
-    <div class="weather-app">
+     <div class="small">
+      <div class="weather-app">
+       <div class="overview">
     <h1>Rio de Janeiro</h1>
     <ul>
         <li>Wednesday 05:00</li>
         <li>cloundy</li>
     </ul>
+    </div>
     <div class="row">
         <div class="col-6">
-            <img src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png" alt="cloudy">
-            22ºC|ºF
+            <div class="clearfix weather-temperature">
+            <img 
+            src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png" alt="cloudy"
+            class="float-left"
+            />
+            <div class="float-left">
+            <strong>22</strong>
+            <span class="units">ºC | <a href="#">ºF</a></span>
+            </div>
+            </div>
         </div>
         <div class="col-6">
             <ul>
@@ -31,11 +42,11 @@
             </ul>
         </div>
     </div>
+    
+    </div>
     <small><a href="https://github.com/renataam/renata-app-weather" target="_blank">Open-source code</a> by Renata Monteiro</small>
     </div>
-    
-    
-   </div>
+    </div>
 
     <script src="src/app.js"></script>
 </body>
