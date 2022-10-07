@@ -32,7 +32,9 @@ function displayTemperature(response) {
   let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
 
-  temperatureElement.innerHTML = Math.round(response.data.main.temp);
+  celsiusTemperature = response.data.main.temp;
+
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
   cityElement.innerHTML = response.data.name;
   descriptionElement.innerHTML = response.data.weather[0].description;
   humidityElement.innerHTML = response.data.main.humidity;
@@ -47,3 +49,28 @@ let city = "Berlim";
 let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
 axios.get(apiUrl).then(displayTemperature);
+
+function showFahrenheitTemperature(event){
+  event.preventDefault(); 
+  let temperatureElement = document.querySelector("#temperature");
+  celsius.classList.remove("active");
+  fahrenheit.classList.add("active");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function showcelsiusTemperature(event) {
+  event.preventDefault();
+  celsius.classList.add("active");
+  fahrenheit.classList.remove("active");
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+celsiusTemperature = null;
+
+let fahrenheit = document.querySelector("#fahrenheit");
+fahrenheit.addEventListener("click", showFahrenheitTemperature);
+
+let celsius = document.querySelector("#celsius");
+celsius.addEventListener("click", showcelsiusTemperature);
