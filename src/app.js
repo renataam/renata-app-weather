@@ -44,12 +44,6 @@ function displayTemperature(response) {
   iconElement.setAttribute("alt", response.data.weather[0].icon);
 }
 
-let apiKey = "170ed67c56f7d3751961a6f26123ed61";
-let city = "Berlim";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-
-axios.get(apiUrl).then(displayTemperature);
-
 function showFahrenheitTemperature(event){
   event.preventDefault(); 
   let temperatureElement = document.querySelector("#temperature");
@@ -57,6 +51,18 @@ function showFahrenheitTemperature(event){
   fahrenheit.classList.add("active");
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function search(city) {
+  let apiKey = "170ed67c56f7d3751961a6f26123ed61";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayTemperature);
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  let cityInputElement = document.querySelector("#city-input");
+  search(cityInputElement.value);
 }
 
 function showcelsiusTemperature(event) {
@@ -69,8 +75,13 @@ function showcelsiusTemperature(event) {
 
 celsiusTemperature = null;
 
+let form = document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
+
 let fahrenheit = document.querySelector("#fahrenheit");
 fahrenheit.addEventListener("click", showFahrenheitTemperature);
 
 let celsius = document.querySelector("#celsius");
 celsius.addEventListener("click", showcelsiusTemperature);
+
+search("Rio de Janeiro");
