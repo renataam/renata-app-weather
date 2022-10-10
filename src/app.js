@@ -55,7 +55,7 @@ function displayForecast(response){
 
 function getForecast(coordinates){
   console.log(coordinates);
-  let apiKey = "170ed67c56f7d3751961a6f26123ed61";
+  let apiKey = "292929ff665169ef5a98dcc8cc29979a";
   let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayForecast);
 }
@@ -126,6 +126,7 @@ let celsius = document.querySelector("#celsius");
 celsius.addEventListener("click", showcelsiusTemperature);
 
 search("Rio de Janeiro");
+
 
 
 
