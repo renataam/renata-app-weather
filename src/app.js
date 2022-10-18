@@ -98,15 +98,6 @@ function displayTemperature(response) {
 
 }
 
-function showFahrenheitTemperature(event){
-  event.preventDefault(); 
-  let temperatureElement = document.querySelector("#temperature");
-  celsius.classList.remove("active");
-  fahrenheit.classList.add("active");
-  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
-}
-
 function search(city) {
   let apiKey = "170ed67c56f7d3751961a6f26123ed61";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
@@ -119,24 +110,8 @@ function handleSubmit(event) {
   search(cityInputElement.value);
 }
 
-function showcelsiusTemperature(event) {
-  event.preventDefault();
-  celsius.classList.add("active");
-  fahrenheit.classList.remove("active");
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-}
-
-celsiusTemperature = null;
-
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
-
-let fahrenheit = document.querySelector("#fahrenheit");
-fahrenheit.addEventListener("click", showFahrenheitTemperature);
-
-let celsius = document.querySelector("#celsius");
-celsius.addEventListener("click", showcelsiusTemperature);
 
 search("Rio de Janeiro");
 
